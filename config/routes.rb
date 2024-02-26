@@ -12,5 +12,5 @@ Rails.application.routes.draw do
 
   resources :dogs
   resources :bookings
-  resources :users, except: [delete]
+  resources :users, except: [:delete]
 end
