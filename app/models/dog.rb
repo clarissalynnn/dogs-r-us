@@ -6,10 +6,12 @@ class Dog < ApplicationRecord
   validates :photos, presence: true
   validates :date_of_birth, presence: true
 
-  def self.by_breed_and_personality(breed = nil, personality = nil)
-    return where(breed: breed, personality: personality) if breed && personality
-    return where(breed: breed) if breed
-    return where(personality: personality) if personality
-    all
-  end
+  # def self.by_breed_and_personality(breed = nil, personality = nil)
+  #   return where(breed: breed, personality: personality) if breed && personality
+  #   return where(breed: breed) if breed
+  #   return where(personality: personality) if personality
+  #   all
+  # end
+
+  #Fetch a list of breeds in the database. Run a SQL query which will fetch a DISTINCT list of breeds.
 end
