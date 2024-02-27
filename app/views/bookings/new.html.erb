@@ -1,7 +1,11 @@
-<h1>New Booking</h1>
+<h1 class="text-center">New Booking 🦮</h1>
 
-<%= simple_form_for [@user, @dog, @booking] do |f| %>
-  <%= f.input :start_date, as: :date %>
-  <%= f.input :end_date, as: :date %>
-  <%= f.submit %>
+<div class="container mx-auto" style="max-width: 50%;">
+<%= simple_form_for [@dog, @booking] do |f| %>
+  <%= f.input :start_date, as: :string, input_html: {type: 'date', class: "form-control"} %>
+  <%= f.input :end_date, as: :string, input_html: {type: 'date', class: "form-control"}  %>
+  <div class="text-center">
+    <%= f.submit "Place Booking", class: "btn btn-primary" %>
+  </div>
 <% end %>
+</div>

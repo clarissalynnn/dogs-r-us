@@ -1,0 +1,13 @@
+<div class="container">
+<h1>Hi <%=@user.first_name %>!</h1>
+<h2>Your bookings 🦮:</h2>
+</div>
+
+<% @bookings.each do |booking| %>
+  <div class="booking-card">
+    <h3>Dog: <%=booking.dog.name%></h3>
+    <p>Breed: <%=booking.dog.breed%></p>
+    <p>Foster starts: <%=booking.start_date%></p>
+    <p>Foster ends: <%=booking.end_date%></p>
+  </div>
+<% end %>
