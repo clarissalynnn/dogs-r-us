@@ -1,9 +1,9 @@
-<div class="card-product">
-  <% @dogs.each do |dog| %>
-   <img src= <%= dog.photos %> style="height: 100%; width: 120px; object-fit:cover"/>
-    <div class="card-product-infos">
-    <h2><%= dog.name %></h2>
-    <p><%= dog.breed %> | <%= dog.personality %></p>
+<div class="container">
+  <div class="row">
+    <% @dogs.each do |dog| %>
+      <div class="col-6">
+        <%= render 'card', dog: dog %>
+      </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
