@@ -32,7 +32,7 @@ puts 'Creating 5 dogs'
     breed: Faker::Creature::Dog.breed,
     personality: Faker::Creature::Dog.meme_phrase,
     date_of_birth: Faker::Date.between(from: '2014-09-23', to: '2014-09-25'),
-    photos: "https://source.unsplash.com/random/?dog",
+    photos: "https://source.unsplash.com/random/?dog&#{rand(1..1000)}",
     owner: User.all.sample(1).first
     )
   dog.save!

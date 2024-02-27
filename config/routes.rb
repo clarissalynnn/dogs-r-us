@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+<<<<<<< HEAD
   root to: "dogs#home"
   resources :users do
     resources :bookings, only: [:index, :create]
@@ -15,6 +16,13 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :bookings, only: [:new, :create]
   end
+=======
+  root to: "dogs#index"
+
+  resources :dogs
+  resources :bookings
+  resources :users, except: [:delete]
+>>>>>>> master
 end
 
 # create booking url => users/:user_id/dogs/:dog_id/bookings/new
