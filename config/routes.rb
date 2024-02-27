@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   resources :dogs
   resources :bookings
   resources :users, except: [:delete]
+  devise_for :user,
+      controllers: {
+         omniauth_callbacks: 'users/omniauth_callbacks'
+      }
 end
