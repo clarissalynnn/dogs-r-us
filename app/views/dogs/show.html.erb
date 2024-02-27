@@ -1,0 +1,19 @@
+<h1><%= @dog.name %></h1>
+
+<% if @dog.photos.present? %>
+  <img src="<%= @dog.photos %>" alt="Dog Photo" style="max-width: 100%; height: auto;">
+<% else %>
+  <p>No photo available</p>
+<% end %>
+
+<p>Breed: <%= @dog.breed %></p>
+<p>Personality: <%= @dog.personality %></p>
+<p>Date of Birth: <%= @dog.date_of_birth %></p>
+
+<% if @dog.owner.present? %>
+  <p>Owner: <%= @dog.owner.first_name %> <%= @dog.owner.last_name %></p>
+<% else %>
+  <p>Owner: Unknown</p>
+<% end %>
+
+<%= link_to "Back to Dogs", dogs_path %>
