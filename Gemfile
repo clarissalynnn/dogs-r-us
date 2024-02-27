@@ -78,3 +78,7 @@ end
 gem "devise"
 
 gem "faker"
+
+# Google Auth
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
