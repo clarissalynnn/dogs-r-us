@@ -9,8 +9,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "dogs#index"
+  resources :users do
+    resources :bookings, only: [:index, :create]
+  end
+  resources :dogs do
+    resources :bookings, only: [:new, :create]
+  end
 
-  resources :dogs
-  resources :bookings
-  resources :users, except: [:delete]
 end
+
+# create booking url => users/:user_id/dogs/:dog_id/bookings/new
