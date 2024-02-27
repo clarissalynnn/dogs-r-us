@@ -19,6 +19,7 @@ puts 'Creating 5 users'
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
+    photos: "https://source.unsplash.com/random/?portrait&#{rand(1..1000)}",
     password: 'password'
   )
   user.save!
