@@ -13,8 +13,8 @@ Booking.destroy_all
 Dog.destroy_all
 User.destroy_all
 
-puts 'Creating 5 users'
-5.times do
+puts 'Creating 20 users'
+20.times do
   user = User.new(
     email: Faker::Internet.email,
     first_name: Faker::Name.first_name,
@@ -24,10 +24,10 @@ puts 'Creating 5 users'
   )
   user.save!
 end
-puts 'Created 5 users'
+puts 'Created 20 users'
 
-puts 'Creating 5 dogs'
-5.times do
+puts 'Creating 15 dogs'
+15.times do
   dog = Dog.new(
     name: Faker::Fantasy::Tolkien.character,
     breed: Faker::Creature::Dog.breed,
@@ -38,7 +38,7 @@ puts 'Creating 5 dogs'
     )
     dog.save!
   end
-  puts 'Created 5 dogs'
+  puts 'Created 15 dogs'
 
   puts 'Creating 5 bookings'
   5.times do
