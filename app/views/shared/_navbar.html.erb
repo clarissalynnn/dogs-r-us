@@ -17,6 +17,11 @@
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
+          <% if current_user.dogs.present? %>
+            <li class="nav-item">
+              <%= link_to "My Dogs", user_dogs_path(current_user), class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag current_user.photos, class: "avatar", alt: "dropdown menu" %>
