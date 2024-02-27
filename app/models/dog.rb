@@ -14,4 +14,8 @@ class Dog < ApplicationRecord
   # end
 
   #Fetch a list of breeds in the database. Run a SQL query which will fetch a DISTINCT list of breeds.
+  def get_breed
+    breed = Dog.select(:breed).distinct
+  end
+
 end
