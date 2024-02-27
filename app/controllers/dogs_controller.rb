@@ -1,10 +1,14 @@
 class DogsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, except: :index
   before_action :set_dog, only: [:show]
 
   def index
     # @dogs = Dog.by_breed_and_personality(params[:breed], params[:personality])
-    @dogs = Dog.all
+    if current_user
+      @dogs = current_user.dogs
+    else
+      @dogs = Dog.all
+    end
   end
 
   def show
