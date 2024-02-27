@@ -1,4 +1,7 @@
 class DogsController < ApplicationController
+
+  skip_before_action :authenticate_user!, only: :home
+
   def index
     # @dogs = Dog.by_breed_and_personality(params[:breed], params[:personality])
     @dogs = Dog.all
@@ -25,4 +28,5 @@ class DogsController < ApplicationController
   def dogs_params
     params.require(:dog).permit(:name, :breed, :personality, :photos, :date_of_birth)
   end
+
 end
