@@ -10,8 +10,9 @@ class DogsController < ApplicationController
 
   def create
     @dog = Dog.new(dogs_params)
+    # TODO: this is just a placeholder, please replace with current user later on.
+    @dog.owner = User.first
     if @dog.save
-      raise
       # Redirect to root_path for now, change to show path once that is done.
       redirect_to root_path
     else
@@ -21,6 +22,6 @@ class DogsController < ApplicationController
 
   private
   def dogs_params
-    params.require(:dog).permit(:name, :breed, :personality, :photos)
+    params.require(:dog).permit(:name, :breed, :personality, :photos, :date_of_birth)
   end
 end
