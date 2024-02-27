@@ -1,0 +1,17 @@
+<div class="container d-flex mx-auto bg-dark text-white px-0 rounded-3 mt-5">
+  <div class="dog-card w-80">
+    <img src="<%=@booking.dog.photos%>" class="card-img-left" alt="Dog photo" style="object-fit: cover; width: 50vw; height: 70vh;">
+  </div>
+
+  <div class="booking-card pt-3 px-4">
+    <h1 class="text-center pb-4">You are fostering <%= @booking.dog.name %> for <%= ((@booking.end_date) - (@booking.start_date)).round %> days!</h1>
+    <h4> <%= @booking.dog.name %> has a <%= @booking.dog.personality %> personality 😎</h4>
+    <h4><%= @booking.dog.name %> is of <%= @booking.dog.breed %> breed 🐶</h4>
+    <h4><%= @booking.dog.name %> is <%= @age %> years old 🎂</h4>
+    <h4><%= @booking.dog.name %> will be with you from:</h4>
+    <h4><strong><%= @booking.start_date %> to <%= @booking.end_date %></strong></h4>
+    <button class="btn btn-success mr-5 rounded"><%= link_to "Cancel booking", booking_path,
+    style: "text-decoration:none; color: white", data: {turbo_method: :delete, turbo_confirm: "Confirm booking cancellation?"}%></button>
+  </div>
+
+</div>
