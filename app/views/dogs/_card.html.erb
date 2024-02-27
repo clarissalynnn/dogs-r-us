@@ -1,0 +1,11 @@
+<div class="card-product">
+      <% if dog.photos.present? %>
+        <%= link_to dog_path(dog) do %>
+          <%= image_tag dog.photos, style: "height: 100%; width: 120px; object-fit: cover;", alt: "Dog Image" %>
+        <% end %>
+      <% end %>
+  <div class="card-product-infos">
+    <h2><%= dog.name %></h2>
+    <p><%= dog.breed %> | <%= dog.personality %></p>
+  </div>
+</div>
