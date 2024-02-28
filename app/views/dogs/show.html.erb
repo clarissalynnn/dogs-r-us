@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <div class="row fs-5">
+    <div class="col-md-6">
+      <h2><%= @dog.name %></h2>
+
+      <% if @dog.photos.present? %>
+        <img src="<%= @dog.photos %>" alt="Dog Photo" class="img-fluid mb-3">
+      <% else %>
+        <p>No photo available</p>
+      <% end %>
+
+      <p><strong>Breed:</strong> <%= @dog.breed %></p>
+      <p><strong>Personality:</strong> <%= @dog.personality %></p>
+      <p><strong>Date of Birth:</strong> <%= @dog.date_of_birth %></p>
+    </div>
+
+    <div class="col-md-6">
+      <% if @dog.owner.present? %>
+        <h2>Owner: <%= @dog.owner.first_name %> <%= @dog.owner.last_name %></h2>
+        <% if @dog.owner.photos.present? %>
+          <img src="<%= @dog.owner.photos %>" alt="Owner Photo" class="img-fluid mb-3">
+        <% else %>
+          <p>No owner photo available</p>
+        <% end %>
+        <p><strong>Email:</strong> <%= @dog.owner.email %></p>
+      <% else %>
+        <p>Owner: Unknown</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to "Book Now", new_dog_booking_path(@dog), class: "btn btn-primary mt-3 w-100" %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "Back to Dogs", dogs_path, class: "btn btn-secondary mt-3 w-100" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
