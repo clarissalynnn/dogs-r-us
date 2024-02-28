@@ -11,6 +11,11 @@ class DogsController < ApplicationController
     end
   end
 
+  def filter
+    filtered_data = Dog.where(breed: params[:values])
+    render json: {results: filtered_data}
+  end
+
   def show
   end
 
