@@ -4,12 +4,10 @@ class DogsController < ApplicationController
 
   def index
     # @dogs = Dog.by_breed_and_personality(params[:breed], params[:personality])
-    @dogs = Dog.all
-
-    if user_signed_in?
-      if params[:show_my_dogs] == "true"
-        @dogs = current_user.dogs
-      end
+    if user_signed_in? && params[:show_my_dogs] == "true"
+      @dogs = current_user.dogs
+    else
+      @dogs = Dog.all
     end
   end
 
