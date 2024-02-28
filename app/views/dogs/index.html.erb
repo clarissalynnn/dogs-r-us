@@ -1,7 +1,9 @@
 <div class="container">
-  <div data-controller="toggle">
-    <i class="fa-solid fa-filter">Filter</i>
-    <%= render "form" %>
+  <div data-controller="toggle_filter">
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Filter <i class="fa-solid fa-filter"></i></button>
+    <div data-toggle-target="togglableElement" class="d-none">
+      <%= render "form" %>
+    </div>
   </div>
 </div>
 

@@ -1,3 +1,6 @@
 <%= form_with method: :get do |form| %>
   <%= Dog.get_breeds do |breed| %>
+    <%= form.check_box :breed %>
+    <%= form.label :breed %>
+  <% end %>
 <% end %>
