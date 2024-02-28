@@ -10,14 +10,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "dogs#index"
 
-  resources :users, only: [] do
+  resources :users do
     resources :bookings, only: [:index, :create]
-    resources :dogs, only: [:index]
+    resources :dogs
   end
 
   resources :dogs do
     resources :bookings, only: [:new, :create]
   end
+  resources :bookings, only: [:show, :edit, :update, :destroy]
 
   devise_for :users,
       controllers: {
@@ -25,5 +26,3 @@ Rails.application.routes.draw do
       }
 
 end
-
-# create booking url => users/:user_id/dogs/:dog_id/bookings/new
