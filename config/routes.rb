@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:show, :edit, :update, :destroy]
 
-  devise_for :user,
+  devise_for :users,
       controllers: {
          omniauth_callbacks: 'users/omniauth_callbacks'
       }

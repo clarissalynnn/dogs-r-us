@@ -12,6 +12,12 @@
       <p><strong>Breed:</strong> <%= @dog.breed %></p>
       <p><strong>Personality:</strong> <%= @dog.personality %></p>
       <p><strong>Date of Birth:</strong> <%= @dog.date_of_birth %></p>
+
+      <% unless @dog.nil? || @dog.owner == current_user %>
+        <%= link_to new_dog_booking_path(@dog), class: "btn btn-primary mb-3", role: "button" do %>
+          Book Now
+        <% end %>
+      <% end %>
     </div>
 
     <div class="col-md-6">
@@ -28,17 +34,3 @@
       <% end %>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6">
-          <%= link_to "Book Now", new_dog_booking_path(@dog), class: "btn btn-primary mt-3 w-100" %>
-        </div>
-        <div class="col-md-6">
-          <%= link_to "Back to Dogs", dogs_path, class: "btn btn-secondary mt-3 w-100" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
