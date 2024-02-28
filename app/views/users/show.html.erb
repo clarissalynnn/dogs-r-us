@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag(@user.photos, style:"width:150px; height: 150px; border-radius:100%") if @user.photos? %>
+    </div>
+    <div class="col-8">
+      <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+      <%= link_to "edit profile", edit_user_registration_path  %>
+    </div>
+  </div>
+</div>
