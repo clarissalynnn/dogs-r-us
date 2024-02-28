@@ -14,7 +14,7 @@
       <p><strong>Date of Birth:</strong> <%= @dog.date_of_birth %></p>
 
       <% unless @dog.nil? || @dog.owner == current_user %>
-        <%= link_to new_dog_booking_path(@dog), class: "btn btn-primary", role: "button" do %>
+        <%= link_to new_dog_booking_path(@dog), class: "btn btn-primary mb-3", role: "button" do %>
           Book Now
         <% end %>
       <% end %>
