@@ -1,13 +1,19 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon mb-2">
+<div class="navbar navbar-expand-md navbar-light navbar-lewagon mb-2 sticky-top">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://pngimg.com/uploads/dog/dog_PNG50317.png" %>
-    <% end %>
+    <div class="row align-items-center">
+      <div class="col-sm-6 col-md-2">
+        <%= link_to "#", class: "navbar-brand" do %>
+          <%= image_tag "https://pngimg.com/uploads/dog/dog_PNG50317.png" %>
+        <% end %>
+      </div>
+    </div>
 
+    <!-- Navbar toggler button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -19,10 +25,11 @@
           </li>
           <% if current_user.dogs.present? %>
             <li class="nav-item">
-              <%= link_to "My Dogs", user_dogs_path(current_user), class: "nav-link" %>
+              <%= link_to "My Dogs", user_dogs_path(current_user, show_my_dogs: true), class: "nav-link" %>
             </li>
           <% end %>
           <li class="nav-item dropdown">
+
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             <% if current_user.photos?  %>
@@ -32,6 +39,7 @@
             <% end %>
 
           </a>
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Profile", user_path(:current_user), class: "dropdown-item" %>
