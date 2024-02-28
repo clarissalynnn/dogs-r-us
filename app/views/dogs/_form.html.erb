@@ -1,8 +1,8 @@
-<%= form_with method: :get do |form| %>
-  <div data-controller="toggle-filter" data-action="click->toggle-filter#checkboxSelect">
+<%= form_with method: :get, action: "/?filter=true", data:{controller: "toggle-filter"} do |form| %>
     <% Dog.get_breeds.each do |breed| %>
-        <%= form.check_box breed %>
+        <%= form.check_box breed, data: {action: 'click->toggle-filter#checkboxSelect',
+         toggle_filter_target: "checkboxElement",
+         breed: breed} %>
         <%= form.label breed %>
     <% end %>
-  </div>
 <% end %>
