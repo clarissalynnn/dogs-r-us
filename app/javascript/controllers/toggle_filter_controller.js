@@ -7,7 +7,11 @@ export default class extends Controller {
     console.log('Connected!')
   }
 
-  fire () {
+  fire (){
     this.toggleableElementTarget.classList.toggle("d-none");
+  }
+
+  checkboxSelect(){
+    console.log("Clicked!")
   }
 }
