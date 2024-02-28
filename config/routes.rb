@@ -11,22 +11,18 @@ Rails.application.routes.draw do
   root to: "dogs#index"
 
   resources :users do
+    resources :bookings, only: [:index, :create]
     resources :dogs
   end
 
-  resources :users do
-    resources :bookings, only: [:index, :create]
-  end
-  
   resources :dogs do
     resources :bookings, only: [:new, :create]
   end
+  resources :bookings, only: [:show, :edit, :update, :destroy]
 
-  devise_for :user,
+  devise_for :users,
       controllers: {
          omniauth_callbacks: 'users/omniauth_callbacks'
       }
 
 end
-
-# create booking url => users/:user_id/dogs/:dog_id/bookings/new

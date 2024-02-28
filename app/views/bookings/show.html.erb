@@ -1,0 +1,24 @@
+<%= link_to user_bookings_path(@booking.user), style:"font-size: 30px; color:black" do %>
+  <i class="fa-solid fa-arrow-left mt-3"></i>
+<% end %>
+<div class="container d-flex mx-auto bg-dark text-white px-0 rounded-3 mt-3">
+
+  <div class="dog-card w-80">
+    <img src="<%=@booking.dog.photos%>" class="card-img-left" alt="Dog photo" style="object-fit: cover; width: 45vw; height: 70vh;">
+  </div>
+
+  <div class="booking-show-card pt-3 px-4 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center pb-4">You are fostering <%= @booking.dog.name %> for <%= @days %> days!</h1>
+    <h4> <%= @booking.dog.name %> has a <%= @booking.dog.personality %> personality 😎</h4>
+    <h4><%= @booking.dog.name %> is of <%= @booking.dog.breed %> breed 🐶</h4>
+    <h4><%= @booking.dog.name %> is <%= @age %> years old 🎂</h4>
+    <h4><%= @booking.dog.name %> will be with you from:</h4>
+    <h4 class="text-center"><strong><%= @booking.start_date.strftime("%A, %B %d, %Y") %> to <%= @booking.end_date.strftime("%A, %B %d, %Y") %></strong></h4>
+    <div class="show-btns d-flex justify-content-center mt-5">
+      <button class="btn btn-info rounded me-5"><%= link_to "Edit booking", edit_booking_path, style: "text-decoration:none; color: black;" %></button>
+      <button class="btn btn-info rounded"><%= link_to "Cancel booking", booking_path,
+      style: "text-decoration:none; color: black", data: {turbo_method: :delete, turbo_confirm: "Confirm booking cancellation?"}%></button>
+    </div>
+  </div>
+
+</div>
