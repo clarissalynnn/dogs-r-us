@@ -11,6 +11,14 @@ class DogsController < ApplicationController
     end
   end
 
+  def filter
+    filtered_data = Dog.where(breed: params[:values])
+    json_value = filtered_data.map do |dog|
+      render_to_string(partial: "dogs/card", formats: :html, locals: {dog: dog})
+    end
+    render json: json_value
+  end
+
   def show
   end
 
@@ -20,8 +28,8 @@ class DogsController < ApplicationController
 
   def create
     @dog = Dog.new(dogs_params)
-    # TODO: this is just a placeholder, please replace with current user later on.
-    @dog.owner = User.first
+    #Assigns current user as the owner of the dog being listed.
+    @dog.owner = current_user
     if @dog.save
       # Redirect to root_path for now, change to show path once that is done.
       redirect_to root_path, notice: 'Dog was successfully created.' # Success message after the redirect.
