@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "dogs#index"
 
+  devise_for :users,
+      controllers: {
+          omniauth_callbacks: 'users/omniauth_callbacks'
+      }
+
   resources :users do
     resources :bookings, only: [:index, :create]
     resources :dogs
@@ -19,10 +24,5 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
   resources :bookings, only: [:show, :edit, :update, :destroy]
-
-  devise_for :users,
-      controllers: {
-         omniauth_callbacks: 'users/omniauth_callbacks'
-      }
 
 end
