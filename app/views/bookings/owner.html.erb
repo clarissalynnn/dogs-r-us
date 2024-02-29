@@ -1,0 +1,33 @@
+<%= link_to bookings_path, style:"font-size: 30px; color:black" do %>
+  <i class="fa-solid fa-arrow-left mt-3"></i>
+<% end %>
+<%# <h1 class="text-center">Booking approved ✅</h1>
+<h1 class="text-center">Booking declined ❌</h1> %>
+
+<div class="d-flex justify-content-between">
+
+  <div class="renter-card my-4 bg-primary w-100 text-center rounded py-5">
+    <h3 class="pb-3"> Renter Info:</h3>
+    <img src="<%= @renter.photos %>" class="rounded-circle" alt="Renter photo" style="width: 250px; height: 250px; object-fit: cover;">
+    <h4 class= pt-4> Name: <%= @renter.first_name %> <%= @renter.last_name %></h4>
+    <h4>Email: <%= @renter.email %></h4>
+
+  </div>
+
+  <div class="booking-card my-4 bg-info w-100 text-center rounded py-5">
+    <h3 class="pb-3">Booking Info:</h3>
+    <img src="<%= @dog.photos %>" class="rounded-circle" alt="Renter photo" style="width: 250px; height: 250px; object-fit: cover;">
+    <h4 class= pt-4> To foster: <%= @dog.name %> </h4>
+    <h4>For: <%= @days %> days </h4>
+    <h4>From:</h4>
+    <h4 class="text-center"><strong><%= @booking.start_date.strftime("%A, %B %d, %Y") %>
+    to <%= @booking.end_date.strftime("%A, %B %d, %Y") %> </strong></h4>
+
+  <div class="show-btns d-flex justify-content-center mt-5">
+      <button class="btn btn-success rounded me-5"><%= link_to "Accept booking", accept_booking_path(@booking),
+      style: "text-decoration:none; color: black;" , data: {turbo_method: :post, turbo_confirm: "Approve booking ?"}%></button>
+      <button class="btn btn-danger rounded"><%= link_to "Decline booking", decline_booking_path(@booking),
+      style: "text-decoration:none; color: black", data: {turbo_method: :post, turbo_confirm: "Decline booking?"}%></button>
+    </div>
+  </div>
+</div>
