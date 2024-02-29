@@ -13,7 +13,10 @@ class DogsController < ApplicationController
 
   def filter
     filtered_data = Dog.where(breed: params[:values])
-    render json: {results: filtered_data}
+    json_value = filtered_data.map do |dog|
+      render_to_string(partial: "dogs/card", formats: :html, locals: {dog: dog})
+    end
+    render json: json_value
   end
 
   def show
