@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     @booking.dog = @dog
     @booking.user = @user
     if @booking.save
-      redirect_to  user_bookings_path(:user_id)
+      redirect_to  bookings_path
     else
       render :new,  status: :unprocessable_entity
     end
@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to  user_bookings_path(:user_id), status: :see_other, notice: "Booking successfully cancelled"
+    redirect_to  bookings_path, status: :see_other, notice: "Booking successfully cancelled"
   end
 
   private
