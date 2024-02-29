@@ -37,10 +37,16 @@ class DogsController < ApplicationController
   def create
     @dog = current_user.dogs.build(dogs_params)
     if @dog.save
-      redirect_to user_profile_path(current_user), notice: 'Dog was successfully created.' # Success message after the redirect.
+      redirect_to profile_path(current_user), notice: 'Dog was successfully created.' # Success message after the redirect.
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @dog = Dog.find(params[:id])
+    @dog.destroy
+    redirect_to dogs_path, notice: "Dog was successfully deleted."
   end
 
   private
