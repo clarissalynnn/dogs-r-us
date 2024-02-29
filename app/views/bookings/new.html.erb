@@ -5,6 +5,9 @@
   <% if @user.bookings.count < 3 %>
     <%= f.input :start_date, as: :string, input_html: {type: 'date', class: "form-control"} %>
     <%= f.input :end_date, as: :string, input_html: {type: 'date', class: "form-control"}  %>
+    <%= f.input :end_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
     <div class="text-center">
       <%= f.submit "Place Booking", class: "btn btn-primary w-100" %>
     </div>

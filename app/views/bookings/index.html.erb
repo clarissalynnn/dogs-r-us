@@ -1,8 +1,5 @@
 <div class="container mt-5">
-  <div class="index-header d-flex justify-content-between">
   <h1><%=@user.first_name %>'s bookings 🦮 :</h1>
-  <button class="btn btn-info rounded"><%= link_to "See more dogs", root_path, style: "text-decoration:none; color: black;" %></button>
-  </div>
   <div class="row">
     <% @bookings.each do |booking| %>
     <div class="col-sm-4">
