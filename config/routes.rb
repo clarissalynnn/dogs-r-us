@@ -15,12 +15,15 @@ Rails.application.routes.draw do
           omniauth_callbacks: 'users/omniauth_callbacks'
       }
 
-  resources :users do
-    resources :bookings, only: [:index, :create]
-    resources :dogs
-  end
+  get "profile", to: "users#show" , as: :profile
+
+  resources :bookings, only: [:index, :create]
+
 
   resources :dogs do
+    collection do
+      get 'filter'
+    end
     resources :bookings, only: [:new, :create]
   end
 
@@ -30,7 +33,5 @@ Rails.application.routes.draw do
       post :accept
       post :decline
     end
-
   end
-
 end

@@ -4,7 +4,9 @@
       <h2><%= @dog.name %></h2>
 
       <% if @dog.photos.present? %>
-        <img src="<%= @dog.photos %>" alt="Dog Photo" class="img-fluid mb-3">
+        <div class="image-container">
+          <img src="<%= @dog.photos %>" alt="Dog Photo" class="img-fluid mb-3 rounded">
+        </div>
       <% else %>
         <p>No photo available</p>
       <% end %>
@@ -13,7 +15,12 @@
       <p><strong>Personality:</strong> <%= @dog.personality %></p>
       <p><strong>Date of Birth:</strong> <%= @dog.date_of_birth %></p>
 
-      <% unless @dog.nil? || @dog.owner == current_user %>
+      <% if @dog.owner == current_user %>
+        <%= form_with(model: @dog, method: :delete, local: true, data: { confirm: "Are you sure you want to delete this dog?" }) do |form| %>
+          <%= form.submit "Delete Dog", class: "btn btn-outline-danger mb-3", role: "button" %>
+        <% end %>
+
+      <% else %>
         <%= link_to new_dog_booking_path(@dog), class: "btn btn-primary mb-3", role: "button" do %>
           Book Now
         <% end %>
@@ -24,7 +31,9 @@
       <% if @dog.owner.present? %>
         <h2>Owner: <%= @dog.owner.first_name %> <%= @dog.owner.last_name %></h2>
         <% if @dog.owner.photos.present? %>
-          <img src="<%= @dog.owner.photos %>" alt="Owner Photo" class="img-fluid mb-3">
+          <div class="image-container">
+            <img src="<%= @dog.owner.photos %>" alt="Owner Photo" class="img-fluid mb-3 rounded">
+          </div>
         <% else %>
           <p>No owner photo available</p>
         <% end %>
@@ -34,3 +43,4 @@
       <% end %>
     </div>
   </div>
+</div>

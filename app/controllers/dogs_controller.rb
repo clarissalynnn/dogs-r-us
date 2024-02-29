@@ -11,6 +11,22 @@ class DogsController < ApplicationController
     end
   end
 
+  def filter
+    if params[:values] == ""
+      filtered_data = Dog.all
+      json_value = filtered_data.map do |dog|
+        render_to_string(partial: "dogs/card", formats: :html, locals: {dog: dog})
+      end
+      render json: json_value
+    else
+      filtered_data = Dog.where(breed: params[:values].split(','))
+      json_value = filtered_data.map do |dog|
+        render_to_string(partial: "dogs/card", formats: :html, locals: {dog: dog})
+      end
+      render json: json_value
+    end
+  end
+
   def show
   end
 
@@ -19,15 +35,18 @@ class DogsController < ApplicationController
   end
 
   def create
-    @dog = Dog.new(dogs_params)
-    # TODO: this is just a placeholder, please replace with current user later on.
-    @dog.owner = User.first
+    @dog = current_user.dogs.build(dogs_params)
     if @dog.save
-      # Redirect to root_path for now, change to show path once that is done.
-      redirect_to root_path, notice: 'Dog was successfully created.' # Success message after the redirect.
+      redirect_to profile_path, notice: 'Dog was successfully created.' # Success message after the redirect
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @dog = Dog.find(params[:id])
+    @dog.destroy
+    redirect_to dogs_path, notice: "Dog was successfully deleted."
   end
 
   private
