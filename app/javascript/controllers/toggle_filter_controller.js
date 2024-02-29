@@ -36,12 +36,8 @@ export default class extends Controller {
       data.forEach((dog) => {
         this.filterResultTarget.insertAdjacentHTML("beforeend", `<div class="col-md-6 col-sm-12">${dog}</div>`)
       });
-      // console.log(data);
+      console.log(data);
     }).catch((error) => console.error("Error fetching data:", error));
 
-    // console.log("Clicked!");
-    const checkbox = event.target;
-    const isChecked = checkbox.checked;
-    // console.log(checkbox.dataset.breed);
   }
 }
