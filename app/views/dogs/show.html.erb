@@ -4,7 +4,9 @@
       <h2><%= @dog.name %></h2>
 
       <% if @dog.photos.present? %>
-        <img src="<%= @dog.photos %>" alt="Dog Photo" class="img-fluid mb-3">
+        <div class="image-container">
+          <img src="<%= @dog.photos %>" alt="Dog Photo" class="img-fluid mb-3 rounded">
+        </div>
       <% else %>
         <p>No photo available</p>
       <% end %>
@@ -24,7 +26,9 @@
       <% if @dog.owner.present? %>
         <h2>Owner: <%= @dog.owner.first_name %> <%= @dog.owner.last_name %></h2>
         <% if @dog.owner.photos.present? %>
-          <img src="<%= @dog.owner.photos %>" alt="Owner Photo" class="img-fluid mb-3">
+          <div class="image-container">
+            <img src="<%= @dog.owner.photos %>" alt="Owner Photo" class="img-fluid mb-3 rounded">
+          </div>
         <% else %>
           <p>No owner photo available</p>
         <% end %>
@@ -34,3 +38,4 @@
       <% end %>
     </div>
   </div>
+</div>
