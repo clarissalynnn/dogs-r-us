@@ -35,8 +35,4 @@ export default class extends Controller {
       })
       .catch(error => console.error("Error fetching data:", error));
   }
-
-  toggleFilters() {
-    this.toggleableElementTarget.classList.toggle("d-none");
-  }
 }
