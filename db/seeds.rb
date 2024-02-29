@@ -39,7 +39,7 @@ puts 'Creating 15 dogs'
       dog: Dog.all.sample(1).first,
       start_date: Faker::Date.between(from: '2014-09-23', to: '2014-09-25'),
       end_date: Faker::Date.between(from: '2014-09-26', to: '2014-09-30'),
-      status: 'Approved'
+      status: 'Pending'
       )
       booking.save!
     end

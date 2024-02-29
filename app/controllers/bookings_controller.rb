@@ -1,27 +1,42 @@
 class BookingsController < ApplicationController
 
-  #list of all bookings a user has, also want to list incoming bookings so the user who's a owner can check new booking and approve it
   def index
     @user = current_user
-    @bookings = @user.bookings
-
-    # @dog = Dog.find(params[:dog_id])
-    # if @booking.dog.user_id = @dog.user_id
-    # end
-  end
-  def index
-    @user = current_user
-    @bookings_as_renter = @user.bookings # bookings thae belong to renter
+    @bookings_as_renter = @user.bookings # bookings that belong to renter
     @dogs_owned_by_user = Dog.where(user_id: @user.id) # get all dogs owned by the current_user
     @bookings_as_owner = Booking.where(dog_id: @dogs_owned_by_user.pluck(:id)) # get all bookings associated with the owner's dogs
   end
-
-
 
   def show
     @booking = Booking.find(params[:id])
     @age = ((Date.today - @booking.dog.date_of_birth.to_date) / 365).to_i
     @days = ((@booking.end_date) - (@booking.start_date)).round
+  end
+
+
+  def owner
+    @booking = Booking.find(params[:id])
+    @dog = Dog.find(@booking.dog_id) # owner's dog
+    @renter = User.find(@booking.user_id)
+    @days = ((@booking.end_date) - (@booking.start_date)).round
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    if @booking.update(status: 'Approved')
+      flash[:notice] = "Booking approved ✅"
+    else
+      redirect_to booking_path(@booking)
+    end
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    if @booking.update(status: 'Declined')
+      flash[:alert] = "Booking declined ❌"
+    else
+      redirect_to booking_path(@booking)
+    end
   end
 
   def new
