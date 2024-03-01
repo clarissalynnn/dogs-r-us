@@ -29,16 +29,15 @@
           <li class="nav-item">
             <%= link_to "Home", "/", class: "nav-link" %>
           </li>
-
           <!-- Profile link -->
           <li class="nav-item">
             <%= link_to "Profile", profile_path, class: "nav-link" %>
           </li>
-          <% if current_user.dogs.present? %>
+          <%# <% if current_user.dogs.present? %>
             <li class="nav-item">
               <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
             </li>
-          <% end %>
+          <%# <% end %>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.photos?  %>

@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :create]
 
-
   resources :dogs do
     collection do
       get 'filter'
