@@ -46,7 +46,7 @@ class DogsController < ApplicationController
   def destroy
     @dog = Dog.find(params[:id])
     @dog.destroy
-    redirect_to dogs_path, notice: "Dog was successfully deleted."
+    redirect_to profile_path, notice: "Dog was successfully deleted."
   end
 
   private
