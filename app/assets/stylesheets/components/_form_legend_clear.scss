@@ -8,3 +8,19 @@
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
+
+.google-button {
+  background: linear-gradient(to right, #4285F4, #EA4335, #FBBC05, #34A853, #4285F4);
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  background-size: 500%; /* Set the size of the gradient to cover the entire button width */
+  transition: background-position 1.0s ease;
+  font-size: 14px;
+
+  &:hover {
+    background-position: 100%; /* Move the gradient to the right */
+  }
+}
