@@ -1,54 +1,51 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: [:show, :owner, :accept, :decline, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :create]
 
   def index
-    @user = current_user
-    @bookings_as_renter = @user.bookings # bookings that belong to renter
+    @bookings_as_renter = @user.bookings.order(status: :desc) # bookings that belong to renter
     @dogs_owned_by_user = Dog.where(user_id: @user.id) # get all dogs owned by the current_user
-    @bookings_as_owner = Booking.where(dog_id: @dogs_owned_by_user.pluck(:id)) # get all bookings associated with the owner's dogs
+    @bookings_as_owner = Booking.where(dog_id: @dogs_owned_by_user.pluck(:id)).order(status: :desc) # get all bookings associated with the owner's dogs
   end
 
   def show
-    @booking = Booking.find(params[:id])
     @age = ((Date.today - @booking.dog.date_of_birth.to_date) / 365).to_i
     @days = ((@booking.end_date) - (@booking.start_date)).round
   end
 
 
   def owner
-    @booking = Booking.find(params[:id])
     @dog = Dog.find(@booking.dog_id) # owner's dog
     @renter = User.find(@booking.user_id)
+    @owner = User.find(@dog.user_id) # The owner is the user associated with the dog
     @days = ((@booking.end_date) - (@booking.start_date)).round
   end
 
   def accept
-    @booking = Booking.find(params[:id])
-    if @booking.update(status: 'Approved')
+    if @booking.update(status: "Approved")
       flash[:notice] = "Booking approved ✅"
-    else
-      redirect_to booking_path(@booking)
     end
+    redirect_to bookings_path
   end
 
   def decline
-    @booking = Booking.find(params[:id])
-    if @booking.update(status: 'Declined')
+    if @booking.update(status: "Declined")
       flash[:alert] = "Booking declined ❌"
-    else
-      redirect_to booking_path(@booking)
     end
+    redirect_to bookings_path
   end
 
   def new
     @user = current_user
     @dog = Dog.find(params[:dog_id])
     @booking = Booking.new
+    @ongoing_bookings = @user.bookings.select { |booking| booking.end_date > Date.today }.count
   end
 
   def create
     @dog = Dog.find(params[:dog_id])
-    @user = current_user
     @booking = Booking.new(booking_params)
+    @booking.status = "Pending"
     @booking.dog = @dog
     @booking.user = @user
     if @booking.save
@@ -59,11 +56,9 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.find(params[:id])
   end
 
   def update
-    @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     if @booking.save
       redirect_to booking_path(@booking), notice: "Booking successfully updated"
@@ -75,12 +70,19 @@ class BookingsController < ApplicationController
 
 
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to  bookings_path, status: :see_other, notice: "Booking successfully cancelled"
   end
 
   private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :status)

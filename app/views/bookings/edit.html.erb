@@ -4,8 +4,8 @@
 <h1 class="text-center mt-4">Edit Booking 🦮</h1>
 <div class="container mx-auto" style="max-width: 50%;">
   <%= simple_form_for @booking do |f| %>
-    <%= f.input :start_date, as: :string, input_html: {type: 'date', class: "form-control"} %>
-    <%= f.input :end_date, as: :string, input_html: {type: 'date', class: "form-control"}  %>
+    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
     <div class="text-center">
       <%= f.submit "Update Booking", class: "btn btn-primary w-100" %>
     </div>

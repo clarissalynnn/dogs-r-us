@@ -1,17 +1,18 @@
-<h1 class="text-center mt-4">New Booking 🦮</h1>
+<%= link_to dog_path(@dog), style:"font-size: 30px; color:black" do %>
+  <i class="fa-solid fa-arrow-left"></i>
+<% end %>
+<h1 class="text-center mt-5">New Booking 🦮</h1>
 
-<div class="container mx-auto" style="max-width: 50%;">
+<div class="container mx-auto mt-3" style="max-width: 50%;">
 <%= simple_form_for [@dog, @booking] do |f| %>
-  <% if @user.bookings.count < 3 %>
+  <% if @ongoing_bookings < 3 %>
     <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-    <%# <%= f.input :start_date, as: :string, input_html: {type: 'date', class: "form-control"} %>
-    <%# <%= f.input :end_date, as: :string, input_html: {type: 'date', class: "form-control"}  %>
     <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
     <div class="text-center">
       <%= f.submit "Place Booking", class: "btn btn-primary w-100" %>
     </div>
   <% else %>
-    <h3 class="text-center">We know how much you love our furry friends, but you can only foster 3 dogs at a time.</h3>
+    <h3 class="text-center my-3">Sorry, you've reached the limit of 3 ongoing bookings</h3>
     <%= f.input :start_date, as: :string, input_html: {type: 'date', class: "form-control", disabled: true} %>
     <%= f.input :end_date, as: :string, input_html: {type: 'date', class: "form-control", disabled: true}  %>
     <div class="text-center">
