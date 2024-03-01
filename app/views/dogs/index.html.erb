@@ -1,10 +1,11 @@
 <div class="container" data-controller="toggle-filter">
+  <div class="px-2">
   <button data-action="click->toggle-filter#fire" class="btn btn-outline-primary">Filter <i class="fa-solid fa-filter"></i></button>
   <div data-toggle-filter-target="toggleableElement">
     <h5><strong>Filter by breed:</strong></h5>
     <%= render "form" %>
   </div>
-
+  </div>
   <div class="row" data-toggle-filter-target="filterResult">
     <% @dogs.each do |dog| %>
       <div class="col-md-6 col-sm-12">
